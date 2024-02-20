@@ -1,3 +1,6 @@
+import re
+
+# This mapping is for condensing the country codes into regions. 
 region_mapping = {
     'US': 'North America', 'CA': 'North America',
     'AR': 'Latin', 'BO': 'Latin', 'BR': 'Latin', 'CL': 'Latin', 'CO': 'Latin', 'CR': 'Latin', 'CU': 'Latin', 
@@ -20,3 +23,22 @@ region_mapping = {
     'VN': 'Asia', 'HK': 'Asia', 'TW': 'Asia', 'PK': 'Asia', 'UZ': 'Asia',
     'AU': 'Oceania', 'NZ': 'Oceania', 'AS': 'Oceania'
 }
+
+# This function is for categorizing job titles into categories.
+def categorize_job_title(job_title):
+    if re.search(r'\b(Data Science|Data Analyst|Analytics|Insight Analyst)\b', job_title, re.IGNORECASE):
+        return 'Data Science & Analytics'
+    elif re.search(r'\b(Machine Learning|ML|Deep Learning|Computer Vision|NLP|AI)\b', job_title, re.IGNORECASE):
+        return 'Machine Learning & AI'
+    elif re.search(r'\b(Business Intelligence|BI Developer|BI Analyst)\b', job_title, re.IGNORECASE):
+        return 'Business Intelligence'
+    elif re.search(r'\b(Data Engineer|Data Architect|ETL|Data Integration)\b', job_title, re.IGNORECASE):
+        return 'Data Engineering'
+    elif re.search(r'\b(Research Scientist|Research Engineer|Research Analyst)\b', job_title, re.IGNORECASE):
+        return 'Research'
+    elif re.search(r'\b(Head of Data|Data Manager|Operations|Director|Lead)\b', job_title, re.IGNORECASE):
+        return 'Management & Operations'
+    elif re.search(r'\b(Software Engineer|Developer|Technician|Software Data Engineer)\b', job_title, re.IGNORECASE):
+        return 'Software Engineering'
+    else:
+        return 'Others'
